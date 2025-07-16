@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URL Shortener</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 20px #00ffe0;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 10px #00ffe0;
+      }
+      100% {
+        box-shadow: 0 0 25px #00ffe0;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 32px;
+      color: #00ffe0;
+      letter-spacing: 2px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #00ffe0;
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00c9b7;
+      transform: scale(1.02);
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .result a {
+      color: #00ffe0;
+      font-weight: bold;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .result a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>URL Shortener</h1>
+    <form action="/short" method="POST">
+      <label for="longurl">Enter Long URL</label>
+      <input type="text" id="longurl" name="longurl" placeholder="https://example.com" required />
+      <button type="submit">Shorten URL</button>
+    </form>
+
+    <% if (shorturl) { %>
+      <div class="result">
+        <p>Your Short URL:</p>
+        <a href="<%= shorturl %>" target="_blank"><%= shorturl %></a>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
